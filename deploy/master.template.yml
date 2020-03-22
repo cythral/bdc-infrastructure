@@ -1,0 +1,23 @@
+Parameters:
+  DomainName:
+    Type: String
+    Description: Domain name for Brekke Dance Center
+    Default: brekkedancecenter.com
+
+Resources:
+  HostedZone:
+    Type: Custom::HostedZone
+    Properties:
+      ServiceToken: !ImportValue cfn-resources:HostedZoneLambdaArn
+      Name: !Ref DomainName
+      DelegationSetId: !ImportValue cfn-dns:DelegationSetId
+      HostedZoneConfig:
+        Comment: The hosted zone for brekke dance center
+
+  Certificate:
+    Type: Custom::Certificate
+    Properties:
+      ServiceToken: !ImportValue cfn-resources:CertificateLambdaArn
+      DomainName: !Ref DomainName
+      ValidationType: DNS
+      HostedZoneId: !Ref HostedZone
