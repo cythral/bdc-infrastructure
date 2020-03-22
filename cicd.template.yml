@@ -130,7 +130,7 @@ Resources:
                 StackName: bdc-infrastructure
                 TemplatePath: buildResults::master.template.yml
                 ActionMode: CREATE_UPDATE
-                RoleArn: !ImportValue cfn-metadata:MasterRoleArn
+                RoleArn: !ImportValue cfn-utilities:MasterRoleArn
                 Capabilities: CAPABILITY_IAM
         # - Name: Dev
         #   Actions:
