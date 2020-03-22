@@ -106,7 +106,7 @@ Resources:
             - Name: Build
               ActionTypeId:
                 Category: Build
-                Provider: CodeBuild
+                Provider: CodeBuild 
                 Owner: AWS
                 Version: 1
               InputArtifacts:
