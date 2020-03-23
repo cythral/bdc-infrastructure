@@ -14,10 +14,10 @@ Resources:
       HostedZoneConfig:
         Comment: The hosted zone for brekke dance center
 
-  Certificate:
+  ClassesCertificate:
     Type: Custom::Certificate
     Properties:
       ServiceToken: !ImportValue cfn-resources:CertificateLambdaArn
-      DomainName: !Ref DomainName
+      DomainName: !Sub classes.${DomainName}
       ValidationType: DNS
       HostedZoneId: !Ref HostedZone
