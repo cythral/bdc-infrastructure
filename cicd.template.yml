@@ -135,7 +135,7 @@ Resources:
         - Name: Dev
           Actions:
             - Name: Deploy
-              RoleArn: !ImportValue cfn-utilities:DevAgentRoleArn
+              RoleArn: !ImportValue cfn-metadata:DevAgentRoleArn
               ActionTypeId:
                 Category: Deploy
                 Provider: CloudFormation
