@@ -23,3 +23,42 @@ Resources:
         - !Sub classes.dev.${DomainName}
       ValidationType: DNS
       HostedZoneId: !Ref HostedZone
+
+  ClassesListenerCertificate: 
+    Type: AWS::ElasticLoadBalancingV2::ListenerCertificate
+    Properties:
+      ListenerArn: !ImportValue cfn-core:HttpsListenerArn
+      Certificates:
+        - CertificateArn: !Ref ClassesCertificate
+  
+  ClassesDevDnsRecords:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref HostedZone
+      RecordSets:
+        - Name: !Sub classes.dev.${DomainName}
+          Type: A
+          AliasTarget:
+            HostedZoneId: !ImportValue cfn-core:LoadBalancerCanonicalHostedZoneId
+            DNSName: !ImportValue cfn-core:LoadBalancerDnsName
+        - Name: !Sub classes.dev.${DomainName}
+          Type: AAAA
+          AliasTarget:
+            HostedZoneId: !ImportValue cfn-core:LoadBalancerCanonicalHostedZoneId
+            DNSName: !ImportValue cfn-core:LoadBalancerDnsName
+
+  ClassesProdDnsRecords:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref HostedZone
+      RecordSets: 
+        - Name: !Sub classes.${DomainName}
+          Type: A
+          AliasTarget:
+            HostedZoneId: !ImportValue cfn-core:LoadBalancerCanonicalHostedZoneId
+            DNSName: !ImportValue cfn-core:LoadBalancerDnsName
+        - Name: !Sub classes.${DomainName}
+          Type: AAAA
+          AliasTarget:
+            HostedZoneId: !ImportValue cfn-core:LoadBalancerCanonicalHostedZoneId
+            DNSName: !ImportValue cfn-core:LoadBalancerDnsName
