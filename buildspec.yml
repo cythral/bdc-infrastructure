@@ -10,11 +10,11 @@ phases:
 
   build:
     commands:
-      - cfn-lint deploy/mutedac.template.yml
+      - cfn-lint deploy/master.template.yml
       - ./deploy/create-config-files.sh
 
 artifacts:
   discard-paths: yes
   files:
-    - "deploy/mutedac.template.yml"
-    - "mutedac.*.config.json"
+    - "deploy/master.template.yml"
+    - "bdc-infrastructure.*.config.json"
