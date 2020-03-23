@@ -1,0 +1,10 @@
+Resources:
+  Cluster:
+    Type: AWS::ECS::Cluster
+
+Outputs:
+  ClusterName:
+    Value: !Ref Cluster
+    Description: Name of the ECS Cluster for Brekke Dance Center Services
+    Export:
+      Name: !Sub ${AWS::StackName}:ClusterName

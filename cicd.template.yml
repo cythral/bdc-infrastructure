@@ -132,49 +132,49 @@ Resources:
                 ActionMode: CREATE_UPDATE
                 RoleArn: !ImportValue cfn-utilities:MasterRoleArn
                 Capabilities: CAPABILITY_IAM
-        # - Name: Dev
-        #   Actions:
-        #     - Name: Deploy
-        #       RoleArn: !ImportValue cfn-utilities:DevAgentRoleArn
-        #       ActionTypeId:
-        #         Category: Deploy
-        #         Provider: CloudFormation
-        #         Owner: AWS
-        #         Version: 1
-        #       InputArtifacts:
-        #         - Name: buildResults
-        #       Configuration:
-        #         StackName: bdc-infrastructure
-        #         TemplatePath: buildResults::agent.template.yml
-        #         TemplateConfiguration: buildResults::bdc-infrastructure.dev.config.json
-        #         ActionMode: CREATE_UPDATE
-        #         RoleArn: !ImportValue cfn-metadata:DevAgentRoleArn
-        #         Capabilities: CAPABILITY_IAM
-        # - Name: Prod
-        #   Actions:
-        #     - Name: Approve
-        #       ActionTypeId: 
-        #         Category: Approval
-        #         Owner: AWS
-        #         Provider: Manual
-        #         Version: 1
-        #       InputArtifacts: []
-        #       OutputArtifacts: []
-        #       RunOrder: 1
-        #     - Name: Prod
-        #       RunOrder: 2
-        #       RoleArn: !ImportValue cfn-metadata:ProdAgentRoleArn
-        #       ActionTypeId:
-        #         Category: Deploy
-        #         Provider: CloudFormation
-        #         Owner: AWS
-        #         Version: 1
-        #       InputArtifacts:
-        #         - Name: buildResults
-        #       Configuration:
-        #         StackName: bdc-infrastructure
-        #         TemplatePath: buildResults::agent.template.yml
-        #         TemplateConfiguration: buildResults::bdc-infrastructure.prod.config.json
-        #         ActionMode: CREATE_UPDATE
-        #         RoleArn: !ImportValue cfn-metadata:ProdAgentRoleArn
-        #         Capabilities: CAPABILITY_IAM
+        - Name: Dev
+          Actions:
+            - Name: Deploy
+              RoleArn: !ImportValue cfn-utilities:DevAgentRoleArn
+              ActionTypeId:
+                Category: Deploy
+                Provider: CloudFormation
+                Owner: AWS
+                Version: 1
+              InputArtifacts:
+                - Name: buildResults
+              Configuration:
+                StackName: bdc-infrastructure
+                TemplatePath: buildResults::agent.template.yml
+                TemplateConfiguration: buildResults::bdc-infrastructure.dev.config.json
+                ActionMode: CREATE_UPDATE
+                RoleArn: !ImportValue cfn-metadata:DevAgentRoleArn
+                Capabilities: CAPABILITY_IAM
+        - Name: Prod
+          Actions:
+            - Name: Approve
+              ActionTypeId: 
+                Category: Approval
+                Owner: AWS
+                Provider: Manual
+                Version: 1
+              InputArtifacts: []
+              OutputArtifacts: []
+              RunOrder: 1
+            - Name: Prod
+              RunOrder: 2
+              RoleArn: !ImportValue cfn-metadata:ProdAgentRoleArn
+              ActionTypeId:
+                Category: Deploy
+                Provider: CloudFormation
+                Owner: AWS
+                Version: 1
+              InputArtifacts:
+                - Name: buildResults
+              Configuration:
+                StackName: bdc-infrastructure
+                TemplatePath: buildResults::agent.template.yml
+                TemplateConfiguration: buildResults::bdc-infrastructure.prod.config.json
+                ActionMode: CREATE_UPDATE
+                RoleArn: !ImportValue cfn-metadata:ProdAgentRoleArn
+                Capabilities: CAPABILITY_IAM
