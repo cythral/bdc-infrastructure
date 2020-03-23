@@ -1,6 +1,8 @@
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: bdc
 
 Outputs:
   ClusterName:
