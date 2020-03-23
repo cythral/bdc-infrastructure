@@ -17,4 +17,5 @@ artifacts:
   discard-paths: yes
   files:
     - "deploy/master.template.yml"
+    - "deploy/agent.template.yml"
     - "bdc-infrastructure.*.config.json"
