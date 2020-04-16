@@ -129,6 +129,7 @@ Resources:
               Configuration:
                 StackName: bdc-infrastructure
                 TemplatePath: buildResults::master.template.yml
+                TemplateConfiguration: buildResults::bdc-infrastructure.shared.config.json
                 ActionMode: CREATE_UPDATE
                 RoleArn: !ImportValue cfn-utilities:MasterRoleArn
                 Capabilities: CAPABILITY_IAM
