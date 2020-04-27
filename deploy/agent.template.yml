@@ -1,8 +1,19 @@
+Parameters:
+  EnableServiceStopping:
+    Type: String
+    AllowedValues:
+      - 'true'
+      - 'false'
+    Description: Whether or not to stop services an hour after development
+
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
       ClusterName: bdc
+      Tags:
+        - Key: ENABLE_SERVICE_STOPPING
+          Value: !Ref EnableServiceStopping
 
 Outputs:
   ClusterName:
