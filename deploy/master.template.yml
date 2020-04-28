@@ -14,10 +14,10 @@ Resources:
       HostedZoneConfig:
         Comment: The hosted zone for brekke dance center
 
-  ClassesCertificate:
+  ClassesSslCertificate:
     Type: Custom::Certificate
     Properties:
-      ServiceToken: !ImportValue cfn-resources:CertificateLambdaArn
+      ServiceToken: !ImportValue cfn-certificate-resource:CertificateLambdaArn
       DomainName: !Sub classes.${DomainName}
       SubjectAlternativeNames:
         - !Sub classes.dev.${DomainName}
@@ -29,7 +29,7 @@ Resources:
     Properties:
       ListenerArn: !ImportValue cfn-core:HttpsListenerArn
       Certificates:
-        - CertificateArn: !Ref ClassesCertificate
+        - CertificateArn: !Ref ClassesSslCertificate
   
   ClassesDevDnsRecords:
     Type: AWS::Route53::RecordSetGroup
