@@ -1,3 +1,4 @@
+Description: Shared Infrastructure for Brekke Dance Center
 Parameters:
   DomainName:
     Type: String
@@ -5,6 +6,9 @@ Parameters:
     Default: brekkedancecenter.com
 
 Resources:
+  DummyBucket:
+    Type: AWS::S3::Bucket
+    
   HostedZone:
     Type: Custom::HostedZone
     Properties:
