@@ -8,9 +8,6 @@ Parameters:
     Description: Whether or not to stop services an hour after development
 
 Resources:
-  DummyBucket:
-    Type: AWS::S3::Bucket
-    
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
