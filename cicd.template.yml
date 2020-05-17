@@ -159,7 +159,7 @@ Resources:
                   {
                     "Variable": "$.SupersededOutput.Superseded",
                     "BooleanEquals": false,
-                    "Next": "Deploy to Shaared"
+                    "Next": "Deploy to Shared"
                   }
                 ]
               },
