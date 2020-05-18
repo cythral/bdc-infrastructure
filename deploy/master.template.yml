@@ -6,12 +6,12 @@ Parameters:
     Default: brekkedancecenter.com
 
 Resources:
-  HostedZone:
+  PrimaryHostedZone:
     Type: Custom::HostedZone
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      ServiceToken: !ImportValue cfn-resources:HostedZoneLambdaArn
+      ServiceToken: !ImportValue cfn-hosted-zone-resource:HostedZoneLambdaArn
       Name: !Ref DomainName
       DelegationSetId: !ImportValue cfn-dns:DelegationSetId
       HostedZoneConfig:
@@ -25,7 +25,7 @@ Resources:
       SubjectAlternativeNames:
         - !Sub classes.dev.${DomainName}
       ValidationType: DNS
-      HostedZoneId: !Ref HostedZone
+      HostedZoneId: !Ref PrimaryHostedZone
 
   ClassesListenerCertificate: 
     Type: AWS::ElasticLoadBalancingV2::ListenerCertificate
@@ -37,7 +37,7 @@ Resources:
   ClassesDevDnsRecords:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneId: !Ref HostedZone
+      HostedZoneId: !Ref PrimaryHostedZone
       RecordSets:
         - Name: !Sub classes.dev.${DomainName}
           Type: A
@@ -53,7 +53,7 @@ Resources:
   ClassesProdDnsRecords:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneId: !Ref HostedZone
+      HostedZoneId: !Ref PrimaryHostedZone
       RecordSets: 
         - Name: !Sub classes.${DomainName}
           Type: A
