@@ -8,6 +8,8 @@ Parameters:
 Resources:
   HostedZone:
     Type: Custom::HostedZone
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       ServiceToken: !ImportValue cfn-resources:HostedZoneLambdaArn
       Name: !Ref DomainName
