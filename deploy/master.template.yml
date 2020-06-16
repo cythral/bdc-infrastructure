@@ -65,15 +65,3 @@ Resources:
           AliasTarget:
             HostedZoneId: !ImportValue cfn-gateway:LoadBalancerCanonicalHostedZoneId
             DNSName: !ImportValue cfn-gateway:LoadBalancerDnsName
-
-  # TxtRecords:
-  #   Type: AWS::Route53::RecordSet
-  #   Properties:
-  #     HostedZoneId: !Ref PrimaryHostedZone
-  #     Type: TXT
-  #     TTL: 300
-  #     Name: !Ref DomainName
-  #     ResourceRecords:
-  #       - '"v=DMARC1; p=reject; rua=mailto:dmarc@cythral.com"'
-  #       - '"v=spf1 ip4:45.76.28.36 ip6:2001:19f0:5c01:4eb:5400:ff:fe7b:31f9 ip6:2001:19f0:5c01:4eb::1"'
-  #       - '"google-site-verification=v9-sK-yOnPNGRrlrfNKGjCQIY5XiCOnB7nt6LCrRAOM"'
