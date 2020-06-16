@@ -65,3 +65,12 @@ Resources:
           AliasTarget:
             HostedZoneId: !ImportValue cfn-gateway:LoadBalancerCanonicalHostedZoneId
             DNSName: !ImportValue cfn-gateway:LoadBalancerDnsName
+
+  GsuiteVerificationRecords:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref PrimaryHostedZone
+      Type: TXT
+      Name: !Ref DomainName
+      ResourceRecords:
+        - '"google-site-verification=v9-sK-yOnPNGRrlrfNKGjCQIY5XiCOnB7nt6LCrRAOM"'
