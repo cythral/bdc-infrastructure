@@ -71,6 +71,7 @@ Resources:
     Properties:
       HostedZoneId: !Ref PrimaryHostedZone
       Type: TXT
+      TTL: 300
       Name: !Ref DomainName
       ResourceRecords:
         - '"google-site-verification=v9-sK-yOnPNGRrlrfNKGjCQIY5XiCOnB7nt6LCrRAOM"'
