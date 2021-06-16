@@ -1,3 +1,4 @@
 {
-    "EnableServiceStopping": "false"
+    "EnableServiceStopping": "false",
+    "DomainName": "brekkedancecenter.com"
 }

@@ -7,6 +7,10 @@ Parameters:
       - 'false'
     Description: Whether or not to stop services an hour after development
 
+  DomainName:
+    Type: String
+    Description: Domain name to use for Brekke Dance Center.
+
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster
@@ -16,9 +20,28 @@ Resources:
         - Key: ENABLE_SERVICE_STOPPING
           Value: !Ref EnableServiceStopping
 
+  ServiceRegistry:
+    Type: AWS::ServiceDiscovery::PrivateDnsNamespace
+    Properties:
+      Name: !Ref DomainName
+      Description: Internal DNS Namespace for Brighid Services.
+      Vpc: !ImportValue cfn-utilities:VpcId
+
 Outputs:
   ClusterName:
     Value: !Ref Cluster
     Description: Name of the ECS Cluster for Brekke Dance Center Services
     Export:
       Name: !Sub ${AWS::StackName}:ClusterName
+
+  ServiceRegistry:
+    Value: !Ref ServiceRegistry
+    Description: Namespace ID of the Service Registry
+    Export:
+      Name: !Sub ${AWS::StackName}:ServiceRegistry
+
+  ServiceRegistryName:
+    Value: !Ref DomainName
+    Description: Name of the Service Registry
+    Export:
+      Name: !Sub ${AWS::StackName}:ServiceRegistryName
